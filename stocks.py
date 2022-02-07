@@ -35,19 +35,29 @@ class stoke():
 
 class portfolio():
     def __init__(self,
-                 token='t.C7lcX81ST35fCduNqYMl9es73OXxtMLG01pj6YKAiRZg-xkS4GdUqxbDOR_FY9MHESeastlNrrNaI0Gp0o-nGA'):
+                 token='t.UiX8ykj5BG-GU8EeU0CRpsCpGZ29wmIuR4kDivH4rGs9IgjUSjV6iD6ox5EIGYI_e-UDJcnSQncJeyF4uTNx0w'):
         client = openapi.api_client(token)
         pf = client.portfolio.portfolio_get()
         self.token = token
         self.my_portfolio = []
         for i in pf.payload.positions:
-            self.my_portfolio.append(stoke(pf.payload.positions[i].average_position_price,
-                                           pf.payload.positions[i].balance,
-                                           pf.payload.positions[i].expected_yield,
-                                           pf.payload.positions[i].instrument_type,
-                                           pf.payload.positions[i].lots,
-                                           pf.payload.positions[i].name,
-                                           pf.payload.positions[i].ticker))
+            self.my_portfolio.append(stoke(i.average_position_price,
+                                           i.balance,
+                                           i.expected_yield,
+                                           i.instrument_type,
+                                           i.lots,
+                                           i.name,
+                                           i.ticker))
+            # self.my_portfolio.append(stoke(pf.payload.positions[i].average_position_price,
+            #                                pf.payload.positions[i].balance,
+            #                                pf.payload.positions[i].expected_yield,
+            #                                pf.payload.positions[i].instrument_type,
+            #                                pf.payload.positions[i].lots,
+            #                                pf.payload.positions[i].name,
+            #                                pf.payload.positions[i].ticker))
 
     def get_list(self):
         return self.my_portfolio
+
+for i in portfolio().get_list():
+    print(i.name)
