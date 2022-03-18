@@ -35,7 +35,7 @@ class stoke():
 
 class portfolio():
     def __init__(self,
-                 token='t.UiX8ykj5BG-GU8EeU0CRpsCpGZ29wmIuR4kDivH4rGs9IgjUSjV6iD6ox5EIGYI_e-UDJcnSQncJeyF4uTNx0w'):
+                 token=''):
         client = openapi.api_client(token)
         pf = client.portfolio.portfolio_get()
         self.token = token
